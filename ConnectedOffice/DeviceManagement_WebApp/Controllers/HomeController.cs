@@ -9,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        /*private HomeRepository _homeRepository = new HomeRepository();*/
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            HomeRepository homeRepository = new HomeRepository();
+
+            var results = homeRepository.GetAll();
             return View();
         }
 

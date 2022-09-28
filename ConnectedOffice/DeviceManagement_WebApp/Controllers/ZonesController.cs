@@ -22,7 +22,12 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Zone.ToListAsync());
+            ZoneRepository zoneRepository = new ZoneRepository();
+
+            var results = zoneRepository.GetAll();
+            return View();
+
+            /*return View(await _context.Zone.ToListAsync());*/
         }
 
         // GET: Zones/Details/5

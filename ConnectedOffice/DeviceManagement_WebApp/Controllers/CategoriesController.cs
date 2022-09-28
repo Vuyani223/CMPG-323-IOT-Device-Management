@@ -10,9 +10,11 @@ using DeviceManagement_WebApp.Models;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ConnectedOfficeContext _context;
+        private CategoryRepository _categoryRepository = new CategoryRepository();
 
         public CategoriesController(ConnectedOfficeContext context)
         {
@@ -22,6 +24,8 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            var results = categoryRepository.GetAll();
+
             return View(await _context.Category.ToListAsync());
         }
 
